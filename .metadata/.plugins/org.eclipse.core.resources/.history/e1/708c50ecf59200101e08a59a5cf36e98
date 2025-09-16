@@ -4,16 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import controls.KeyboardInput;
 
 @SuppressWarnings("serial")
 public class Panel extends JPanel implements Runnable {
@@ -27,10 +24,6 @@ public class Panel extends JPanel implements Runnable {
 	private Thread gameThread = null;
 	
 	private int FPS = 60;
-	
-	private KeyboardInput keys;
-	
-	private ArrayList<String> string = new ArrayList<String>();
 	
 	public Panel() {
 		this.setPreferredSize(new Dimension(ScreenWidth, ScreenHeight));
@@ -47,9 +40,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		Window = Main.getWindow(this, Fullscreen, img);
 		
-		keys = new KeyboardInput();
-		this.addKeyListener(keys);
-		
 		startGameThread();
 	}
 	
@@ -64,35 +54,13 @@ public class Panel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-		string.clear();
 		
-		if(keys.getKeyHeld(KeyEvent.VK_A)) {
-			string.add(KeyEvent.getKeyText(KeyEvent.VK_A));
-			System.out.println(KeyEvent.getKeyText(KeyEvent.VK_A));
-		}
-		if(keys.getKeyHeld(KeyEvent.VK_S)) {
-			string.add(KeyEvent.getKeyText(KeyEvent.VK_S));
-			System.out.println(KeyEvent.getKeyText(KeyEvent.VK_S));
-		}
-		
-		keys.reset();
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D) g;
-		
-		System.out.println("Test");
-		
-		g2.setColor(Color.red);
-		
-		int ctr = 16;
-		for(String str : string) {
-			System.out.println(str);
-			g2.drawString(str, 0, ctr);
-			ctr += 16;
-		}
 		
 	}
 	
@@ -110,8 +78,7 @@ public class Panel extends JPanel implements Runnable {
 			last = now;
 			if(delta >= 1) {
 				delta--;
-				update();
-				repaint();
+				
 			}
 		}
 	}

@@ -4,15 +4,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controls.Buttons;
 import controls.KeyboardInput;
 
 @SuppressWarnings("serial")
@@ -68,11 +71,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		if(keys.getKeyHeld(KeyEvent.VK_A)) {
 			string.add(KeyEvent.getKeyText(KeyEvent.VK_A));
-			System.out.println(KeyEvent.getKeyText(KeyEvent.VK_A));
-		}
-		if(keys.getKeyHeld(KeyEvent.VK_S)) {
-			string.add(KeyEvent.getKeyText(KeyEvent.VK_S));
-			System.out.println(KeyEvent.getKeyText(KeyEvent.VK_S));
 		}
 		
 		keys.reset();
@@ -83,15 +81,10 @@ public class Panel extends JPanel implements Runnable {
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
-		System.out.println("Test");
-		
-		g2.setColor(Color.red);
-		
-		int ctr = 16;
+		int ctr = 24;
 		for(String str : string) {
-			System.out.println(str);
-			g2.drawString(str, 0, ctr);
-			ctr += 16;
+			g2.drawString(str, ctr, 0);
+			ctr += 24;
 		}
 		
 	}

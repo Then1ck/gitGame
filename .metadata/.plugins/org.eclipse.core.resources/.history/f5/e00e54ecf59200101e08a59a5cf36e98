@@ -1,0 +1,44 @@
+package controls;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.HashMap;
+
+public class KeyboardInput implements KeyListener {
+	private HashMap<Integer, Buttons> keys = new HashMap<>();
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int keyCode = e.getExtendedKeyCode();
+		keys.computeIfAbsent(keyCode, k -> new Buttons()).buttonDown();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		int keyCode = e.getExtendedKeyCode();
+		keys.computeIfAbsent(keyCode, k -> new Buttons()).buttonUp();
+	}
+	
+	public void reset() {
+		for(Buttons btn : keys.values()) {
+			btn.reset();
+		}
+	}
+	
+	public boolean getKeyPressed(int keyCode) {
+		Buttons btn = keys.get(keyCode);
+		return btn != null && btn.getPressed();
+	}
+	
+	public boolean getKeyHeld(int keyCode) {
+		Buttons btn = keys.get(keyCode);
+		return btn != null && btn.getHeld();
+	}
+
+}
