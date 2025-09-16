@@ -5,5 +5,4 @@
  * 
  */
 module RoomMaster {
-	requires java.desktop;
 }

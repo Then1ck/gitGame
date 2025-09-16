@@ -1,8 +1,28 @@
 package main;
 
+import javax.swing.JFrame;
+
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Test");
+		new Panel();
 		
+	}
+	
+
+	public static JFrame getWindow(Panel panel, boolean Fullscreen) {
+		JFrame window = new JFrame();
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setResizable(false);
+		
+		window.setUndecorated(Fullscreen);
+		
+		window.add(panel);
+		window.pack();
+		
+		window.setLocationRelativeTo(null);
+		window.setVisible(true);
+		
+		
+		return null;
 	}
 }
