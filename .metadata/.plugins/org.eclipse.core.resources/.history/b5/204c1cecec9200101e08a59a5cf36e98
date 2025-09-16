@@ -1,22 +1,16 @@
 package main;
 
-import java.awt.image.BufferedImage;
-
 import javax.swing.JFrame;
 
 public class Main {
 	public static void main(String[] args) {
-		
 		new Panel();
 		
 	}
 	
 
-	public static JFrame getWindow(Panel panel, boolean Fullscreen, BufferedImage img) {
+	public static JFrame getWindow(Panel panel, boolean Fullscreen) {
 		JFrame window = new JFrame();
-		window.setTitle("Git Game");
-		window.setIconImage(img);
-		
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		

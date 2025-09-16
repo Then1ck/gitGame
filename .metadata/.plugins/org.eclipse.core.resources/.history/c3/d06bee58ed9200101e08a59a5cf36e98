@@ -2,17 +2,12 @@ package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Panel extends JPanel implements Runnable {
-	
-	private BufferedImage img = null;
 
 	private int ScreenWidth=1280, ScreenHeight=720;
 	private JFrame Window;
@@ -25,18 +20,12 @@ public class Panel extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.setFocusable(true);
 		
-		try {
-			img = ImageIO.read(getClass().getResourceAsStream("/icon/Screenshot (3719).png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		Window = Main.getWindow(this, Fullscreen, img);
+		Window = Main.getWindow(this, Fullscreen);
 	}
 	
 	public void newWindow() {
 		Window.dispose();
-		Window = Main.getWindow(this, Fullscreen, img);
+		Window = Main.getWindow(this, Fullscreen);
 	}
 	
 	@Override
