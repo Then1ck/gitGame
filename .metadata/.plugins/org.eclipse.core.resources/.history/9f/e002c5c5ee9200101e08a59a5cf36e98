@@ -62,6 +62,7 @@ public class Panel extends JPanel implements Runnable {
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
+		g2.draw(new Rectangle(ScreenWidth/2, ScreenHeight/2));
 	}
 	
 	@Override
