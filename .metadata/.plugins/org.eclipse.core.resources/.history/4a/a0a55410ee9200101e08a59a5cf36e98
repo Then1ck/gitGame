@@ -61,10 +61,10 @@ public class Panel extends JPanel implements Runnable {
 		while(gameThread!=null) {
 			now = System.nanoTime();
 			delta += (now-last)/drawSpeed;
-			last = now;
-			if(delta >= 1) {
-				delta--;
-				
+			
+			if(delta >= 60) {
+				delta-=60;
+				System.out.println("Drawn");
 			}
 		}
 	}

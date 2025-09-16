@@ -64,7 +64,7 @@ public class Panel extends JPanel implements Runnable {
 			last = now;
 			if(delta >= 1) {
 				delta--;
-				
+				System.out.println("Drawn");
 			}
 		}
 	}

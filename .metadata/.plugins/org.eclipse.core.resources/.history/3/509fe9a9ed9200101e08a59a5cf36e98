@@ -18,10 +18,6 @@ public class Panel extends JPanel implements Runnable {
 	private JFrame Window;
 	private boolean Fullscreen = false;
 	
-	private Thread gameThread = null;
-	
-	private int FPS = 60;
-	
 	public Panel() {
 		this.setPreferredSize(new Dimension(ScreenWidth, ScreenHeight));
 		this.setBackground(Color.black);
@@ -36,13 +32,6 @@ public class Panel extends JPanel implements Runnable {
 		}
 		
 		Window = Main.getWindow(this, Fullscreen, img);
-		
-		startGameThread();
-	}
-	
-	public void startGameThread() {
-		gameThread = new Thread(this);
-		gameThread.start();
 	}
 	
 	public void newWindow() {
@@ -52,21 +41,7 @@ public class Panel extends JPanel implements Runnable {
 	
 	@Override
 	public void run() {
-		double drawSpeed = 1000000000/FPS;
-		long last = System.nanoTime();
-		long now = System.nanoTime();
 		
-		double delta = 0;
-		
-		while(gameThread!=null) {
-			now = System.nanoTime();
-			delta += (now-last)/drawSpeed;
-			last = now;
-			if(delta >= 1) {
-				delta--;
-				
-			}
-		}
 	}
 
 }
