@@ -1,0 +1,18 @@
+package entities;
+
+public abstract class Entities {
+	protected int velX, velY, prevX, prevY, locX, locY, width, height;
+	protected boolean Grounded;
+	
+	public Entities(int LocX, int LocY, int Width, int Height) {
+		velX = 0;
+		velY = 0;
+		Grounded = false;
+		prevX = LocX;
+		locX = LocX;
+		prevY = LocY;
+		locY = LocY;
+		width = Width;
+		height = Height;
+	}
+}

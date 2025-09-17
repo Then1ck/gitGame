@@ -1,0 +1,9 @@
+package entities;
+
+public class Player extends Entities{
+
+	public Player(int LocX, int LocY, int Width, int Height) {
+		super(LocX, LocY, Width, Height);
+	}
+
+}

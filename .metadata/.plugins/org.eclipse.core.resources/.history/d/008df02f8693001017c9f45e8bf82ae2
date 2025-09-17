@@ -1,0 +1,128 @@
+package main;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import controls.KeyboardInput;
+
+@SuppressWarnings("serial")
+public class Panel extends JPanel implements Runnable {
+	
+	private BufferedImage img = null;
+
+	private int ScreenWidth=1280, ScreenHeight=720;
+	private JFrame Window;
+	private boolean Fullscreen = false;
+	
+	private Thread gameThread = null;
+	
+	private int FPS = 60;
+	
+	private KeyboardInput keys;
+	
+	private ArrayList<String> string = new ArrayList<String>();
+	
+	public Panel() {
+		this.setPreferredSize(new Dimension(ScreenWidth, ScreenHeight));
+		this.setBackground(Color.black);
+		
+		this.setDoubleBuffered(true);
+		this.setFocusable(true);
+		
+		try {
+			img = ImageIO.read(getClass().getResourceAsStream("/icon/Screenshot (3719).png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Window = Main.getWindow(this, Fullscreen, img);
+		
+		keys = new KeyboardInput();
+		this.addKeyListener(keys);
+		
+		startGameThread();
+	}
+	
+	public void startGameThread() {
+		gameThread = new Thread(this);
+		gameThread.start();
+	}
+	
+	public void newWindow() {
+		Window.dispose();
+		Window = Main.getWindow(this, Fullscreen, img);
+	}
+	
+	public void update() {
+		string.clear();
+		
+
+		if(keys.getKeyHeld(KeyEvent.VK_W)) {
+			string.add(KeyEvent.getKeyText(KeyEvent.VK_W));
+		}
+		if(keys.getKeyHeld(KeyEvent.VK_A)) {
+			string.add(KeyEvent.getKeyText(KeyEvent.VK_A));
+		}
+		if(keys.getKeyHeld(KeyEvent.VK_S)) {
+			string.add(KeyEvent.getKeyText(KeyEvent.VK_S));
+		}
+		if(keys.getKeyHeld(KeyEvent.VK_D)) {
+			string.add(KeyEvent.getKeyText(KeyEvent.VK_D));
+		}
+		if(keys.getKeyHeld(KeyEvent.VK_SPACE)) {
+			string.add(KeyEvent.getKeyText(KeyEvent.VK_SPACE));
+		}
+		if(keys.getKeyHeld(KeyEvent.VK_ESCAPE)) {
+			string.add(KeyEvent.getKeyText(KeyEvent.VK_ESCAPE));
+		}
+		
+		
+		keys.reset();
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		Graphics2D g2 = (Graphics2D) g;
+		
+		g2.setColor(Color.red);
+		
+		int ctr = 0;
+		for(String str : string) {
+			g2.drawString(str, ctr, 16);
+			ctr += 16*str.length();
+		}
+		
+	}
+	
+	@Override
+	public void run() {
+		double drawSpeed = 1000000000/FPS;
+		long last = System.nanoTime();
+		long now = System.nanoTime();
+		
+		double delta = 0;
+		
+		while(gameThread!=null) {
+			now = System.nanoTime();
+			delta += (now-last)/drawSpeed;
+			last = now;
+			if(delta >= 1) {
+				delta--;
+				update();
+				repaint();
+			}
+		}
+	}
+
+}
