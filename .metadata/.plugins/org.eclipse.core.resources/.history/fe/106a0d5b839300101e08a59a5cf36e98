@@ -93,7 +93,7 @@ public class Panel extends JPanel implements Runnable {
 		int ctr = 0;
 		for(String str : string) {
 			g2.drawString(str, ctr, 16);
-			ctr += 16;
+			ctr += 10;
 		}
 		
 	}

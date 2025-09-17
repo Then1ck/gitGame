@@ -66,18 +66,11 @@ public class Panel extends JPanel implements Runnable {
 	public void update() {
 		string.clear();
 		
-
-		if(keys.getKeyHeld(KeyEvent.VK_W)) {
-			string.add(KeyEvent.getKeyText(KeyEvent.VK_W));
-		}
 		if(keys.getKeyHeld(KeyEvent.VK_A)) {
 			string.add(KeyEvent.getKeyText(KeyEvent.VK_A));
 		}
 		if(keys.getKeyHeld(KeyEvent.VK_S)) {
 			string.add(KeyEvent.getKeyText(KeyEvent.VK_S));
-		}
-		if(keys.getKeyHeld(KeyEvent.VK_D)) {
-			string.add(KeyEvent.getKeyText(KeyEvent.VK_D));
 		}
 		
 		keys.reset();
@@ -93,7 +86,7 @@ public class Panel extends JPanel implements Runnable {
 		int ctr = 0;
 		for(String str : string) {
 			g2.drawString(str, ctr, 16);
-			ctr += 16;
+			ctr += 8;
 		}
 		
 	}
