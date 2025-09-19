@@ -80,17 +80,12 @@ public class Panel extends JPanel implements Runnable {
 		}
 		
 		if(p1.getGrounded()) {
-			if(keys.getKeyPressed(KeyEvent.VK_SPACE))p1.startJump();
-		}
-		else {
-			if(keys.getKeyHeld(KeyEvent.VK_SPACE))p1.contJump();
-			else p1.setJTimer(0);
-		}
-		p1.fall();
+			if(keys.getKeyHeld(KeyEvent.VK_SPACE))p1.setVelY(-2);
+		}else 
+			p1.fall();
 		
 		p1.move();
 		
-		p1.setGrounded(false);
 		for(Floor flr : floors) {
 			if(flr.lands(p1)) {
 				p1.landing(flr.getY());

@@ -40,7 +40,7 @@ public class Player extends Entities{
 	public void contJump() {
 		if(jTimer <= 0)return;
 		jTimer--;
-		velY -= jTimer;
+		velY -= 4;
 	}
 	
 	public void setJTimer(int tmr) {

@@ -17,7 +17,7 @@ public abstract class Entities {
 		locY = LocY;
 		width = Width;
 		height = Height;
-		yLimit = 16;
+		yLimit = 32;
 		xLimit = 16;
 	}
 	
@@ -65,18 +65,6 @@ public abstract class Entities {
 	}
 	
 	public void fall() {
-		velY+=2;
-	}
-	
-	public boolean getGrounded() {
-		return Grounded;
-	}
-	
-	public void setGrounded(boolean g) {
-		Grounded = g;
-	}
-	
-	public void setVelY(int nY) {
-		velY = nY;
+		velY++;
 	}
 }

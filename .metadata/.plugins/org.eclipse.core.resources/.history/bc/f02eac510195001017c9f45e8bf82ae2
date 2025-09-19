@@ -1,7 +1,6 @@
 package entities;
 
 public class Player extends Entities{
-	private int jTimer = 0;
 
 	public Player(int LocX, int LocY, int Width, int Height) {
 		super(LocX, LocY, Width, Height);
@@ -31,19 +30,4 @@ public class Player extends Entities{
 		locY += velY;
 	}
 
-	public void startJump() {
-		jTimer = 8;
-		Grounded = false;
-		velY-=8;
-	}
-	
-	public void contJump() {
-		if(jTimer <= 0)return;
-		jTimer--;
-		velY -= jTimer;
-	}
-	
-	public void setJTimer(int tmr) {
-		jTimer = tmr;
-	}
 }

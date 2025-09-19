@@ -90,7 +90,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		p1.move();
 		
-		p1.setGrounded(false);
 		for(Floor flr : floors) {
 			if(flr.lands(p1)) {
 				p1.landing(flr.getY());

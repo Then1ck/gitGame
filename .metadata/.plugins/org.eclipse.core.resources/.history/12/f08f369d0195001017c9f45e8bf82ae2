@@ -32,15 +32,15 @@ public class Player extends Entities{
 	}
 
 	public void startJump() {
-		jTimer = 8;
+		jTimer = 6;
 		Grounded = false;
-		velY-=8;
+		velY-=4;
 	}
 	
 	public void contJump() {
 		if(jTimer <= 0)return;
 		jTimer--;
-		velY -= jTimer;
+		velY -= 2;
 	}
 	
 	public void setJTimer(int tmr) {
