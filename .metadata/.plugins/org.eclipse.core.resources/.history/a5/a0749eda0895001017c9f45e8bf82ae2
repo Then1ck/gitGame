@@ -2,7 +2,6 @@ package entities;
 
 public class Player extends Entities{
 	private int jTimer = 0;
-	private boolean ducks = false;
 
 	public Player(int LocX, int LocY, int Width, int Height) {
 		super(LocX, LocY, Width, Height);
@@ -46,21 +45,5 @@ public class Player extends Entities{
 	
 	public void setJTimer(int tmr) {
 		jTimer = tmr;
-	}
-	
-	public boolean getDuck() {
-		return ducks;
-	}
-	
-	public void duck() {
-		height /= 2;
-		locY -= height;
-		ducks = true;
-	}
-	
-	public void stand() {
-		locY += height;
-		height *= 2;
-		ducks = false;
 	}
 }

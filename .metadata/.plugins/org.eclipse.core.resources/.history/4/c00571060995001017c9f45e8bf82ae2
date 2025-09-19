@@ -89,7 +89,8 @@ public class Panel extends JPanel implements Runnable {
 		
 		if(keys.getKeyHeld(KeyEvent.VK_S)) {
 			if(!p1.getDuck())p1.duck();
-		}else if(p1.getDuck())p1.stand();
+		}
+		else if(p1.getDuck())p1.stand();
 		
 		p1.fall();
 		
