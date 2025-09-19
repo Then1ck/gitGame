@@ -54,12 +54,12 @@ public class Player extends Entities{
 	
 	public void duck() {
 		height /= 2;
-		locY += height;
+		locY -= height;
 		ducks = true;
 	}
 	
 	public void stand() {
-		locY -= height;
+		locY += height;
 		height *= 2;
 		ducks = false;
 	}
