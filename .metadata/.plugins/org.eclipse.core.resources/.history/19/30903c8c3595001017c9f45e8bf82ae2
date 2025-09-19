@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import camera.Camera;
 import controls.KeyboardInput;
 import entities.Player;
 import terrain.Floor;
@@ -35,8 +34,6 @@ public class Panel extends JPanel implements Runnable {
 	
 	private Player p1 = new Player(0, 0, 32, 64);
 	private ArrayList<Floor> floors = new ArrayList<Floor>();
-	
-	private Camera cams = null;
 	
 	public Panel() {
 		this.setPreferredSize(new Dimension(ScreenWidth, ScreenHeight));
@@ -60,8 +57,6 @@ public class Panel extends JPanel implements Runnable {
 		floors.add(new Floor(640, 1280, 500));
 		floors.add(new Floor(0, 640, 300));
 		
-		cams = new Camera(p1);
-		
 		startGameThread();
 	}
 	
@@ -76,18 +71,13 @@ public class Panel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-		System.out.println(p1.getVelX());
-		
-		boolean Move = false;
 		if(keys.getKeyHeld(KeyEvent.VK_D)) {
-			p1.walk(1);
-			Move = !Move;
+			p1.run(1);
+		}else if(keys.getKeyHeld(KeyEvent.VK_A)) {
+			p1.run(-1);
+		}else {
+			p1.slow();
 		}
-		if(keys.getKeyHeld(KeyEvent.VK_A)) {
-			p1.walk(-1);
-			Move = !Move;
-		}
-		if(!Move)p1.slow();
 		
 		if(p1.getGrounded()) {
 			if(keys.getKeyPressed(KeyEvent.VK_SPACE))p1.startJump();
@@ -97,11 +87,8 @@ public class Panel extends JPanel implements Runnable {
 			else p1.setJTimer(0);
 		}
 		
-		if(keys.getKeyHeld(KeyEvent.VK_SHIFT))p1.startRun();
-		else p1.stopRun();
-		
 		if(keys.getKeyHeld(KeyEvent.VK_S)) {
-			p1.duck();
+			if(!p1.getDuck())p1.duck();
 		}else if(p1.getDuck())p1.stand();
 		
 		p1.fall();
@@ -116,8 +103,6 @@ public class Panel extends JPanel implements Runnable {
 			}
 		}
 		
-		cams.camChase();
-		
 		keys.reset();
 	}
 	
@@ -125,8 +110,6 @@ public class Panel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D) g;
-		
-		cams.setCam(g2);
 		
 		p1.draw(g2);
 		

@@ -77,17 +77,14 @@ public class Panel extends JPanel implements Runnable {
 	
 	public void update() {
 		System.out.println(p1.getVelX());
-		
-		boolean Move = false;
+
+		p1.slow();
 		if(keys.getKeyHeld(KeyEvent.VK_D)) {
-			p1.walk(1);
-			Move = !Move;
+			p1.run(1);
 		}
 		if(keys.getKeyHeld(KeyEvent.VK_A)) {
-			p1.walk(-1);
-			Move = !Move;
+			p1.run(-1);
 		}
-		if(!Move)p1.slow();
 		
 		if(p1.getGrounded()) {
 			if(keys.getKeyPressed(KeyEvent.VK_SPACE))p1.startJump();
@@ -97,11 +94,8 @@ public class Panel extends JPanel implements Runnable {
 			else p1.setJTimer(0);
 		}
 		
-		if(keys.getKeyHeld(KeyEvent.VK_SHIFT))p1.startRun();
-		else p1.stopRun();
-		
 		if(keys.getKeyHeld(KeyEvent.VK_S)) {
-			p1.duck();
+			if(!p1.getDuck())p1.duck();
 		}else if(p1.getDuck())p1.stand();
 		
 		p1.fall();

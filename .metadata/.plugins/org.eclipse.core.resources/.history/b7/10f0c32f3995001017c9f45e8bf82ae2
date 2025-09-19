@@ -68,7 +68,7 @@ public class Player extends Entities{
 	
 	public void duck() {
 		height = 32;
-		if(!ducks)locY += height;
+		locY += height;
 		ducks = true;
 		xLimit = 8;
 	}

@@ -1,0 +1,26 @@
+package camera;
+
+import java.awt.Graphics2D;
+
+import entities.Player;
+
+public class Camera {
+	private Player p1;
+	private int offsetX, offsetY;
+	private int DistToLeft=640, DistToTop=540;
+	
+	public Camera(Player P1) {
+		p1 = P1;
+		offsetX = DistToLeft;
+		offsetY = DistToTop;
+	}
+	
+	public void camChase() {
+		offsetX = DistToLeft - p1.getLocX();
+		offsetY = DistToTop - p1.getLocY();
+	}
+	
+	public void  setCam(Graphics2D g2) {
+		g2.translate(offsetX, offsetY);
+	}
+}

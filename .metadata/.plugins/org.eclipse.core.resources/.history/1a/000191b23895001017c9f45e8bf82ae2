@@ -97,11 +97,11 @@ public class Panel extends JPanel implements Runnable {
 			else p1.setJTimer(0);
 		}
 		
-		if(keys.getKeyHeld(KeyEvent.VK_SHIFT))p1.startRun();
+		if(keys.getKeyPressed(KeyEvent.VK_SHIFT))p1.startRun();
 		else p1.stopRun();
 		
 		if(keys.getKeyHeld(KeyEvent.VK_S)) {
-			p1.duck();
+			if(!p1.getDuck())p1.duck();
 		}else if(p1.getDuck())p1.stand();
 		
 		p1.fall();

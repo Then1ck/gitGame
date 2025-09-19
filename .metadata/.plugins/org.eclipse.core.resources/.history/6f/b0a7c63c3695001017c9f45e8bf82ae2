@@ -1,0 +1,14 @@
+package camera;
+
+import entities.Player;
+
+public class Camera {
+	private Player p1;
+	private int offsetX, offsetY;
+	
+	public Camera(Player P1, int OffsetX, int OffsetY) {
+		p1 = P1;
+		offsetX = OffsetX;
+		offsetY = OffsetY;
+	}
+}
