@@ -22,49 +22,7 @@ public abstract class Entities {
 	}
 	
 	public void draw(Graphics2D g2) {
-		g2.setColor(Color.RED);
+		g2.setColor(Color.BLUE);
 		g2.drawRect(locX, locY, width, height);
-	}
-	
-	public int getLocX() {
-		return locX;
-	}
-	
-	public int getWidth() {
-		return width;
-	}
-	
-	public int getLocY() {
-		return locY;
-	}
-	
-	public int getHeight() {
-		return height;
-	}
-	
-	public int getPrevX() {
-		return prevX;
-	}
-	
-	public int getPrevY() {
-		return prevY;
-	}
-	
-	public int getPrevDown() {
-		return prevY + height;
-	}
-	
-	public int getDown() {
-		return locY + height;
-	}
-	
-	public void landing(int Y) {
-		locY = Y-height;
-		velY = 0;
-		Grounded = true;
-	}
-	
-	public void fall() {
-		velY++;
 	}
 }

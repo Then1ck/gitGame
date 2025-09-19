@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 
 import controls.KeyboardInput;
 import entities.Player;
-import terrain.Floor;
 
 @SuppressWarnings("serial")
 public class Panel extends JPanel implements Runnable {
@@ -33,7 +32,6 @@ public class Panel extends JPanel implements Runnable {
 	private KeyboardInput keys;
 	
 	private Player p1 = new Player(0, 0, 32, 64);
-	private ArrayList<Floor> floors = new ArrayList<Floor>();
 	
 	public Panel() {
 		this.setPreferredSize(new Dimension(ScreenWidth, ScreenHeight));
@@ -52,10 +50,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		keys = new KeyboardInput();
 		this.addKeyListener(keys);
-		
-		floors.add(new Floor(0, 640, 700));
-		floors.add(new Floor(640, 1280, 500));
-		floors.add(new Floor(0, 640, 300));
 		
 		startGameThread();
 	}
@@ -78,16 +72,8 @@ public class Panel extends JPanel implements Runnable {
 		}else {
 			p1.slow();
 		}
-		p1.fall();
 		
 		p1.move();
-		
-		for(Floor flr : floors) {
-			if(flr.lands(p1)) {
-				p1.landing(flr.getY());
-				break;
-			}
-		}
 		
 		keys.reset();
 	}
@@ -98,11 +84,6 @@ public class Panel extends JPanel implements Runnable {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		p1.draw(g2);
-		
-		g2.setColor(Color.BLUE);
-		for(Floor flr : floors) {
-			flr.draw(g2);
-		}
 	}
 	
 	@Override

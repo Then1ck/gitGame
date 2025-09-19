@@ -22,7 +22,7 @@ public abstract class Entities {
 	}
 	
 	public void draw(Graphics2D g2) {
-		g2.setColor(Color.RED);
+		g2.setColor(Color.BLUE);
 		g2.drawRect(locX, locY, width, height);
 	}
 	
@@ -59,7 +59,7 @@ public abstract class Entities {
 	}
 	
 	public void landing(int Y) {
-		locY = Y-height;
+		locY = Y;
 		velY = 0;
 		Grounded = true;
 	}

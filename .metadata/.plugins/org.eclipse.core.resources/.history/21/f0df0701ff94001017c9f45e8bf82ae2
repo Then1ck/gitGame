@@ -16,7 +16,7 @@ public class Floor {
 	public boolean lands(Entities nt) {
 		if(nt.getLocX() > right || nt.getLocX() + nt.getWidth() < left)
 			return false;
-		if(nt.getPrevDown() <= y && nt.getDown() >= y)return true;
+		if(nt.getPrevY() <= y && nt.getLocY() >= y)return true;
 		
 		return false;
 	}

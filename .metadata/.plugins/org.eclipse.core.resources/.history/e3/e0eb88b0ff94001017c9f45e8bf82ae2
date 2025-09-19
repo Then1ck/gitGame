@@ -99,7 +99,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		p1.draw(g2);
 		
-		g2.setColor(Color.BLUE);
 		for(Floor flr : floors) {
 			flr.draw(g2);
 		}

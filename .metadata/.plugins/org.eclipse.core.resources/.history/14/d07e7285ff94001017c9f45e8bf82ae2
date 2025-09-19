@@ -22,7 +22,7 @@ public class Player extends Entities{
 	}
 	
 	public void move() {
-//		System.out.println(velX);
+		System.out.println(velX);
 		
 		prevX = locX;
 		prevY = locY;

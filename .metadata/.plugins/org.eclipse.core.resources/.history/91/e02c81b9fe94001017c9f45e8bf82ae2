@@ -54,8 +54,6 @@ public class Panel extends JPanel implements Runnable {
 		this.addKeyListener(keys);
 		
 		floors.add(new Floor(0, 640, 700));
-		floors.add(new Floor(640, 1280, 500));
-		floors.add(new Floor(0, 640, 300));
 		
 		startGameThread();
 	}
@@ -78,7 +76,6 @@ public class Panel extends JPanel implements Runnable {
 		}else {
 			p1.slow();
 		}
-		p1.fall();
 		
 		p1.move();
 		
@@ -99,7 +96,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		p1.draw(g2);
 		
-		g2.setColor(Color.BLUE);
 		for(Floor flr : floors) {
 			flr.draw(g2);
 		}
