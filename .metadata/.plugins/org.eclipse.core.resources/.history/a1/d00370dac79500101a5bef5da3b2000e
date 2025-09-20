@@ -64,10 +64,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		walls.add(new Wall(0, 720, 0));
 		
-		walls.add(new Wall(200, 300, 640));
-		
-		floors.add(new Floor(640, 640, 200));
-		
 		cams = new Camera(p1);
 		
 		startGameThread();
@@ -116,19 +112,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		p1.move();
 		
-		for(Wall wls : walls) {
-			switch(wls.collide(p1)) {
-			case -1:
-				p1.setLocX(wls.getX()-p1.getWidth()-1);
-				p1.setVelX(0);
-				break;
-			case 1:
-				p1.setLocX(wls.getX()+1);
-				p1.setVelX(0);
-				break;
-			}
-		}
-		
 		p1.setGrounded(false);
 		for(Floor flr : floors) {
 			if(flr.lands(p1)) {
@@ -137,6 +120,16 @@ public class Panel extends JPanel implements Runnable {
 			}
 		}
 		
+		for(Wall wls : walls) {
+			switch(wls.collide(p1)) {
+			case -1:
+				p1.setLocX(wls.getX()-p1.getWidth());
+				break;
+			case 1:
+				p1.setLocX(wls.getX());
+				break;
+			}
+		}
 		
 		cams.camChase();
 		
