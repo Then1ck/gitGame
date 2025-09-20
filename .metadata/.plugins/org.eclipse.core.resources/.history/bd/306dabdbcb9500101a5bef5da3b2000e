@@ -87,12 +87,4 @@ public abstract class Entities {
 	public void setVelX(int x) {
 		velX = x;
 	}
-	
-	public int getVelY() {
-		return velY;
-	}
-	
-	public void setLocY(int lY) {
-		locY = lY;
-	}
 }

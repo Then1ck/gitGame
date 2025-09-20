@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import camera.Camera;
 import controls.KeyboardInput;
 import entities.Player;
-import terrain.Ceiling;
 import terrain.Floor;
 import terrain.Wall;
 
@@ -38,7 +37,6 @@ public class Panel extends JPanel implements Runnable {
 	private Player p1 = new Player(0, 0, 32, 64);
 	private ArrayList<Floor> floors = new ArrayList<Floor>();
 	private ArrayList<Wall> walls = new ArrayList<Wall>();
-	private ArrayList<Ceiling> ceilings = new ArrayList<Ceiling>();
 	
 	private Camera cams = null;
 	
@@ -72,9 +70,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		floors.add(new Floor(0, 1280, 720));
 		walls.add(new Wall(0, 720, 1280));
-		
-		ceilings.add(new Ceiling(640, 1280, 500));
-		walls.add(new Wall(500, 500, 640));
 		
 		cams = new Camera(p1);
 		
@@ -124,22 +119,6 @@ public class Panel extends JPanel implements Runnable {
 		
 		p1.move();
 		
-		
-		p1.setGrounded(false);
-		for(Floor flr : floors) {
-			if(flr.lands(p1)) {
-				p1.landing(flr.getY());
-				break;
-			}
-		}
-		
-		for(Ceiling clg : ceilings) {
-			if(clg.bonks(p1)) {
-				if(p1.getVelY() < 0) p1.setVelY(0);
-				p1.setLocY(clg.getY());
-			}
-		}
-
 		for(Wall wls : walls) {
 			switch(wls.collide(p1)) {
 			case -1:
@@ -153,6 +132,15 @@ public class Panel extends JPanel implements Runnable {
 			}
 		}
 		
+		p1.setGrounded(false);
+		for(Floor flr : floors) {
+			if(flr.lands(p1)) {
+				p1.landing(flr.getY());
+				break;
+			}
+		}
+		
+		
 		cams.camChase();
 		
 		keys.reset();
@@ -165,12 +153,12 @@ public class Panel extends JPanel implements Runnable {
 		
 		cams.setCam(g2);
 		
+		p1.draw(g2);
+		
 		g2.setColor(Color.BLUE);
 		for(Floor flr : floors) {
 			flr.draw(g2);
 		}
-		
-		p1.draw(g2);
 		
 		g2.setColor(Color.BLUE);
 		for(Wall wl : walls) {

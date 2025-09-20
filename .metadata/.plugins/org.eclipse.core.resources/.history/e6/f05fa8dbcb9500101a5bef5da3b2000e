@@ -1,0 +1,20 @@
+package terrain;
+
+import entities.Entities;
+
+public class Ceiling {
+	private int left, right, y;
+	
+	public Ceiling(int Left, int Right, int Y) {
+		left = Left;
+		right = Right;
+		y = Y;
+	}
+	
+	public boolean bonks(Entities nt) {
+//		if(nt.getLocX() > )
+		
+		
+		return false;
+	}
+}

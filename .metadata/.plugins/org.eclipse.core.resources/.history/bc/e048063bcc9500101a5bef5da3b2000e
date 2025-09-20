@@ -14,7 +14,7 @@ public class Wall {
 	}
 	
 	public int collide(Entities nt) {
-		if(nt.getLocY() >= down || nt.getLocY() + nt.getHeight() <= up)return 0;
+		if(nt.getLocY() > down || nt.getLocY() + nt.getHeight() < up)return 0;
 		if(nt.getPrevX() >= x && nt.getLocX() <= x)return 1;
 		if(nt.getPrevX() + nt.getWidth() <= x && nt.getLocX() + nt.getWidth() >= x)return -1;
 		

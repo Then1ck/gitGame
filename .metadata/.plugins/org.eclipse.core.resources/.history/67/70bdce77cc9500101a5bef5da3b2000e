@@ -124,6 +124,18 @@ public class Panel extends JPanel implements Runnable {
 		
 		p1.move();
 		
+		for(Wall wls : walls) {
+			switch(wls.collide(p1)) {
+			case -1:
+				p1.setLocX(wls.getX()-p1.getWidth()-1);
+				p1.setVelX(0);
+				break;
+			case 1:
+				p1.setLocX(wls.getX()+1);
+				p1.setVelX(0);
+				break;
+			}
+		}
 		
 		p1.setGrounded(false);
 		for(Floor flr : floors) {
@@ -139,19 +151,7 @@ public class Panel extends JPanel implements Runnable {
 				p1.setLocY(clg.getY());
 			}
 		}
-
-		for(Wall wls : walls) {
-			switch(wls.collide(p1)) {
-			case -1:
-				p1.setLocX(wls.getX()-p1.getWidth()-1);
-				p1.setVelX(0);
-				break;
-			case 1:
-				p1.setLocX(wls.getX()+1);
-				p1.setVelX(0);
-				break;
-			}
-		}
+		
 		
 		cams.camChase();
 		
