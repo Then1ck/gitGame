@@ -16,8 +16,8 @@ public class Camera {
 	}
 	
 	public void camChase() {
-		offsetX += ((DistToLeft - p1.getLocX()) - offsetX)/5;
-		offsetY += ((DistToTop - p1.getLocY()) - offsetY)/5;
+		offsetX = DistToLeft - p1.getLocX();
+		offsetY = DistToTop - p1.getLocY();
 	}
 	
 	public void  setCam(Graphics2D g2) {

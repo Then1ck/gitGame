@@ -76,7 +76,7 @@ public class Panel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-//		System.out.println(p1.getVelX());
+		System.out.println(p1.getVelX());
 		
 		boolean Move = false;
 		if(keys.getKeyHeld(KeyEvent.VK_D)) {
